@@ -23,13 +23,13 @@ function main(par_overrides...)
     end
 
     # need to do that first, otherwise it blocks the GUI
-    (pars, iefpars), args = load_parameters(args, (Params, IEFParams),
+    (pars,), args = load_parameters(args, (AllParams,),
         ["--gui-scale"], 
         Dict(:help => "set gui scale", :default => 1.0, :arg_type => Float64))
 
     Random.seed!(pars.seed)
 
-    model = setup_model(pars, iefpars)
+    model = setup_model(pars)
 #    logfile = setupLogging(simPars)
 
     scale = args[:gui_scale]
@@ -60,8 +60,8 @@ function main(par_overrides...)
 
         if !pause #&& time <= simPars.finishTime
             t += 1 
-            step!(model, pars, iefpars)
-            data = observe(Data, model.world, pars, iefpars)
+            step!(model, pars)
+            data = observe(Data, model.world, pars, t)
             #log_results(logfile, data)
             # add values to graph objects
             add_value!(graph_ipersons, data.n_inf.n)
@@ -112,7 +112,7 @@ function main(par_overrides...)
             fontsize = floor(Int, 15 * scale))
 
         #date = Date(2020) + Week(model.week) + Day(model.day)
-        RL.DrawText("$(trunc(Int, t/iefpars.t_repr_cycle))", 0, 
+        RL.DrawText("$(trunc(Int, t/pars.t_repr_cycle))", 0, 
                     screenHeight - floor(Int, 20 * scale), 
                     floor(Int, 20 * scale), RL.BLACK)
 
