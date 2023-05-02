@@ -1,0 +1,22 @@
+AllParams:
+  t_repr_cycle: 40
+  ief_pre_N: 10000
+  n_steps: 5000
+  p_inf:
+    - 1.0
+    - 0.0
+    - 1.0
+    - 1.0
+  ief_pre_n_samples: 10000
+  ief_pre_n_steps: 33
+  p_rec: 0.001488095238095238
+  ief_mut_sigma: 0.1
+  ief_p_mut: 1.0000000000000004e-6
+  n_infected: 10
+  n_nodes: 5000
+  mean_k: 15.0
+  n_basepairs: 30000
+  p_inf_base: 0.001
+  ief_pre_n_bins: 100
+  seed: 42
+  ief_mut_mu: 0.9
